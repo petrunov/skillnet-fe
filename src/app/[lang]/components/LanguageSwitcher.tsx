@@ -8,7 +8,7 @@ const locales = ['en', 'bg'];
 export default function LanguageSwitcher() {
   const router = useRouter();
   const pathname = usePathname();
-  const { i18n } = useTranslation();
+  const { i18n } = useTranslation('common');
 
   const changeLanguage = (locale: string) => {
     if (locale === i18n.language) return;

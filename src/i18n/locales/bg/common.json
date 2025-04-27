@@ -1,0 +1,17 @@
+{
+  "login": {
+    "greeting": "Здравей!",
+    "welcomeMessage": "Добре дошли в SkillNet!",
+    "formTitle": "Влез в системата",
+    "email": "Email",
+    "emailPlaceholder": "Въведи email",
+    "password": "Парола",
+    "submit": "Потребителско име",
+    "forgotPassword": "Забравена парола?",
+    "freeProfile": "Създай безплатен профил",
+    "register": "Регистрирай се",
+    "executors": "Изпълнители",
+    "companies": "Компании",
+    "login": "Вход"
+  }
+}

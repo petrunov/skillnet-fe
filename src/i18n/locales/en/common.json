@@ -1,0 +1,17 @@
+{
+  "login": {
+    "greeting": "Hello!",
+    "welcomeMessage": "Welcome to SkillNet!",
+    "formTitle": "Login to the system",
+    "email": "Email",
+    "emailPlaceholder": "Enter your email",
+    "password": "Password",
+    "submit": "Login",
+    "forgotPassword": "Forgot password?",
+    "freeProfile": "Create a free profile",
+    "register": "Register",
+    "executors": "Executors",
+    "companies": "Companies",
+    "login": "Login"
+  }
+}
