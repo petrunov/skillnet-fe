@@ -1,18 +1,19 @@
 // src/app/[lang]/login/page.tsx
-import LoginForm from '../components/LoginForm';
+import type { Translations } from '../../../i18n/dictionaries';
 import { getDictionary, Locale } from '../../../i18n/dictionaries';
+import LoginClient from './LoginClient';
 
 interface Props {
-  // params is now async in Next.js 15+
   params: Promise<{ lang: Locale }>;
 }
 
 export default async function LoginPage({ params }: Props) {
-  // await the params API before using it
+  // 1. await params (Server Component)
   const { lang } = await params;
 
-  // now load your dictionary
-  const dict = await getDictionary(lang);
+  // 2. load your locale dictionary
+  const dict: Translations = await getDictionary(lang);
 
-  return <LoginForm dict={dict} />;
+  // 3. render your client-side UI
+  return <LoginClient dict={dict} />;
 }

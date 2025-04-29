@@ -1,6 +1,7 @@
-// src/components/LoginForm.tsx
+// src/app/[lang]/components/LoginForm.tsx
 'use client';
 
+import React, { useState } from 'react';
 import {
   Box,
   Button,
@@ -8,8 +9,6 @@ import {
   Divider,
   IconButton,
   InputAdornment,
-  Tab,
-  Tabs,
   TextField,
   Typography,
 } from '@mui/material';
@@ -17,7 +16,6 @@ import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useState } from 'react';
 import type { Translations } from '../../../i18n/dictionaries';
 
 const schema = z.object({
@@ -28,16 +26,16 @@ type FormValues = z.infer<typeof schema>;
 
 interface LoginFormProps {
   dict: Translations;
+  /** when true, drop the default vertical padding so wrapper controls it */
+  isMobile?: boolean;
 }
 
-export default function LoginForm({ dict }: LoginFormProps) {
+export default function LoginForm({ dict, isMobile = false }: LoginFormProps) {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormValues>({
-    resolver: zodResolver(schema),
-  });
+  } = useForm<FormValues>({ resolver: zodResolver(schema) });
   const [showPassword, setShowPassword] = useState(false);
 
   const onSubmit = (data: FormValues) => {
@@ -45,14 +43,10 @@ export default function LoginForm({ dict }: LoginFormProps) {
   };
 
   return (
-    <Container maxWidth='sm' sx={{ py: 4 }}>
-      <Box textAlign='center' mb={4}>
-        <Typography variant='h4' gutterBottom>
-          {dict.login.greeting}
-        </Typography>
-        <Typography>{dict.login.welcomeMessage}</Typography>
-      </Box>
-
+    <Container
+      maxWidth='sm'
+      sx={{ py: isMobile ? 0 : 4 }} // no padding on mobile
+    >
       <Typography variant='h6' gutterBottom>
         {dict.login.formTitle}
       </Typography>
@@ -80,7 +74,7 @@ export default function LoginForm({ dict }: LoginFormProps) {
             endAdornment: (
               <InputAdornment position='end'>
                 <IconButton
-                  onClick={() => setShowPassword((prev) => !prev)}
+                  onClick={() => setShowPassword((p) => !p)}
                   edge='end'>
                   {showPassword ? <VisibilityOff /> : <Visibility />}
                 </IconButton>
@@ -96,20 +90,28 @@ export default function LoginForm({ dict }: LoginFormProps) {
         <Box mt={2} textAlign='right'>
           <Button size='small'>{dict.login.forgotPassword}</Button>
         </Box>
+
+        <Divider sx={{ my: 3 }} />
+
+        {/* Free profile + Register button */}
+        <Box>
+          <Typography
+            gutterBottom
+            sx={{
+              textAlign: { xs: 'left', sm: 'center' },
+            }}>
+            {dict.login.freeProfile}
+          </Typography>
+          <Button
+            variant='outlined'
+            fullWidth={isMobile} // full width on mobile, auto on desktop
+            sx={{
+              mb: 2,
+            }}>
+            {dict.login.register}
+          </Button>
+        </Box>
       </Box>
-
-      <Divider sx={{ my: 3 }} />
-
-      <Box textAlign='center'>
-        <Typography gutterBottom>{dict.login.freeProfile}</Typography>
-        <Button variant='outlined'>{dict.login.register}</Button>
-      </Box>
-
-      <Tabs value={2} centered sx={{ mt: 4 }}>
-        <Tab label={dict.login.executors} />
-        <Tab label={dict.login.companies} />
-        <Tab label={dict.login.login} />
-      </Tabs>
     </Container>
   );
 }
