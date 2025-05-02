@@ -13,5 +13,16 @@
     "executors": "Изпълнители",
     "companies": "Фирми",
     "login": "Вход"
+  },
+  "register": {
+    "step1Title": "Създайте профил",
+    "step1Heading": "Какъв е вашият имейл?",
+    "email": "Имейл",
+    "emailPlaceholder": "вашият@имейл.com",
+    "nextButton": "Напред",
+    "step2Title": "Задайте парола",
+    "step2Heading": "Изберете парола",
+    "password": "Парола",
+    "passwordPlaceholder": "••••••••"
   }
 }

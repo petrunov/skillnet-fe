@@ -1,4 +1,3 @@
-// src/app/[lang]/components/LoginForm.tsx
 'use client';
 
 import React, { useState } from 'react';
@@ -26,7 +25,6 @@ type FormValues = z.infer<typeof schema>;
 
 interface LoginFormProps {
   dict: Translations;
-  /** when true, drop the default vertical padding so wrapper controls it */
   isMobile?: boolean;
 }
 
@@ -43,10 +41,7 @@ export default function LoginForm({ dict, isMobile = false }: LoginFormProps) {
   };
 
   return (
-    <Container
-      maxWidth='sm'
-      sx={{ py: isMobile ? 0 : 4 }} // no padding on mobile
-    >
+    <Container maxWidth='sm' sx={{ py: isMobile ? 0 : 4 }}>
       <Typography variant='h6' gutterBottom>
         {dict.login.formTitle}
       </Typography>
@@ -102,14 +97,15 @@ export default function LoginForm({ dict, isMobile = false }: LoginFormProps) {
             }}>
             {dict.login.freeProfile}
           </Typography>
-          <Button
-            variant='outlined'
-            fullWidth={isMobile} // full width on mobile, auto on desktop
-            sx={{
-              mb: 2,
-            }}>
-            {dict.login.register}
-          </Button>
+          <Container
+            maxWidth='sm'
+            disableGutters={isMobile}
+            sx={{ py: isMobile ? 0 : 4, px: 0 }}>
+            {/* … */}
+            <Button variant='outlined' color='primary' fullWidth sx={{ mb: 2 }}>
+              {dict.login.register}
+            </Button>
+          </Container>
         </Box>
       </Box>
     </Container>

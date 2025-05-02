@@ -12,7 +12,6 @@ export default async function RootLayout({
   params: Promise<{ lang: 'en' | 'bg' }>;
 }) {
   const { lang } = await params;
-
   return (
     <html lang={lang}>
       <body>

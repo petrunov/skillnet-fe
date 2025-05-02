@@ -1,3 +1,4 @@
+import 'server-only';
 import type { Locale } from '../../i18n-config';
 
 export type { Locale };
@@ -18,6 +19,18 @@ export type Translations = {
     executors: string;
     companies: string;
     login: string;
+  };
+  register: {
+    step1Title: string;
+    step1Heading: string;
+    email: string;
+    emailPlaceholder: string;
+    step2Title: string;
+    step2Heading: string;
+    password: string;
+    passwordPlaceholder: string;
+    nextButton: string;
+    // add additional steps as needed
   };
 };
 
