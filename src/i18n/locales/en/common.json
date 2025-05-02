@@ -19,10 +19,15 @@
     "step1Heading": "What’s your email address?",
     "email": "Email",
     "emailPlaceholder": "you@example.com",
+    "executorOptionLabel": "I am an executor",
+    "executorOptionDescription": "I need to hire workers",
+    "companyOptionLabel": "I am a company",
+    "companyOptionDescription": "I offer services",
     "nextButton": "Next",
     "step2Title": "Set Your Password",
     "step2Heading": "Choose a password",
     "password": "Password",
-    "passwordPlaceholder": "••••••••"
+    "passwordPlaceholder": "••••••••",
+    "haveProfileAlready": "Already have a profile?"
   }
 }

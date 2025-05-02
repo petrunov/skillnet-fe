@@ -1,3 +1,4 @@
+// src/i18n/dictionaries.ts
 import 'server-only';
 import type { Locale } from '../../i18n-config';
 
@@ -25,11 +26,16 @@ export type Translations = {
     step1Heading: string;
     email: string;
     emailPlaceholder: string;
+    executorOptionLabel: string;
+    executorOptionDescription: string;
+    companyOptionLabel: string;
+    companyOptionDescription: string;
+    nextButton: string;
     step2Title: string;
     step2Heading: string;
     password: string;
     passwordPlaceholder: string;
-    nextButton: string;
+    haveProfileAlready;
     // add additional steps as needed
   };
 };

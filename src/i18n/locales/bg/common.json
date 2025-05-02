@@ -19,10 +19,15 @@
     "step1Heading": "Какъв е вашият имейл?",
     "email": "Имейл",
     "emailPlaceholder": "вашият@имейл.com",
+    "executorOptionLabel": "Аз съм изпълнител",
+    "executorOptionDescription": "Търся работници",
+    "companyOptionLabel": "Аз съм фирма",
+    "companyOptionDescription": "Предлагам услуги",
     "nextButton": "Напред",
     "step2Title": "Задайте парола",
     "step2Heading": "Изберете парола",
     "password": "Парола",
-    "passwordPlaceholder": "••••••••"
+    "passwordPlaceholder": "••••••••",
+    "haveProfileAlready": "Вече имате профил?"
   }
 }

@@ -15,6 +15,7 @@ import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
+import Link from 'next/link';
 import type { Translations } from '../../../i18n/dictionaries';
 
 const schema = z.object({
@@ -25,10 +26,15 @@ type FormValues = z.infer<typeof schema>;
 
 interface LoginFormProps {
   dict: Translations;
+  lang: string;
   isMobile?: boolean;
 }
 
-export default function LoginForm({ dict, isMobile = false }: LoginFormProps) {
+export default function LoginForm({
+  dict,
+  lang,
+  isMobile = false,
+}: LoginFormProps) {
   const {
     register,
     handleSubmit,
@@ -102,9 +108,15 @@ export default function LoginForm({ dict, isMobile = false }: LoginFormProps) {
             disableGutters={isMobile}
             sx={{ py: isMobile ? 0 : 4, px: 0 }}>
             {/* … */}
-            <Button variant='outlined' color='primary' fullWidth sx={{ mb: 2 }}>
-              {dict.login.register}
-            </Button>
+            <Link href={`/${lang}/register/1`} passHref prefetch>
+              <Button
+                variant='outlined'
+                color='primary'
+                fullWidth
+                sx={{ mb: 2 }}>
+                {dict.login.register}
+              </Button>
+            </Link>
           </Container>
         </Box>
       </Box>

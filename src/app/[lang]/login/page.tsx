@@ -10,5 +10,5 @@ export default async function LoginPage({ params }: Props) {
   const { lang } = await params;
   const dict: Translations = await getDictionary(lang);
 
-  return <LoginForm dict={dict} />;
+  return <LoginForm dict={dict} lang={lang} />;
 }

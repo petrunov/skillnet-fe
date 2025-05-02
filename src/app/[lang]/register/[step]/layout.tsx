@@ -2,6 +2,7 @@ import type { ReactNode } from 'react';
 import AppShell from '../../components/appShell';
 import type { Translations } from '../../../../i18n/dictionaries';
 import { getDictionary, Locale } from '../../../../i18n/dictionaries';
+import { Box, Paper } from '@mui/material';
 
 interface Props {
   children: ReactNode;
@@ -9,17 +10,42 @@ interface Props {
 }
 
 export default async function RegisterStepLayout({ children, params }: Props) {
-  const { lang, step } = params;
+  const { lang } = params;
   const dict: Translations = await getDictionary(lang);
 
-  // Derive title and back-button logic from `step`
-  const titleKey = `${step}Title` as keyof typeof dict.register;
-  const title = dict.register[titleKey];
-  const showBack = step !== 'step1';
-
   return (
-    <AppShell dict={dict} title={title} showBack={showBack}>
-      {children}
+    <AppShell dict={dict} showBack={false}>
+      <Box
+        component='div'
+        sx={{
+          // Mobile: show overlapping card
+          display: { xs: 'block', md: 'none' },
+        }}>
+        <Paper
+          elevation={3}
+          sx={{
+            boxShadow: 'none',
+            mt: -4,
+            borderTopLeftRadius: 16,
+            borderTopRightRadius: 16,
+            pt: 4,
+            px: 2,
+            // allow inner scroll
+            height: 'calc(100vh -  (theme) => theme.spacing( (4+6)/8 ))',
+            overflowY: 'auto',
+          }}>
+          {children}
+        </Paper>
+      </Box>
+
+      <Box
+        component='div'
+        sx={{
+          // Desktop: just show the form normally
+          display: { xs: 'none', md: 'block' },
+        }}>
+        {children}
+      </Box>
     </AppShell>
   );
 }
