@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import {
   Box,
   Button,
@@ -10,23 +11,30 @@ import {
   InputAdornment,
   TextField,
   Typography,
+  Alert,
+  CircularProgress,
 } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { useForm } from 'react-hook-form';
-import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
+import type { Translations, Locale } from '../../../i18n/dictionaries';
+import { login, ApiError, LoginPayload } from '../../../lib/accountService';
+import { z } from 'zod';
 import Link from 'next/link';
-import type { Translations } from '../../../i18n/dictionaries';
+import { Link as MuiLink } from '@mui/material';
 
+// reuse the same Zod schema for form validation
 const schema = z.object({
-  email: z.string().email(),
-  password: z.string().min(6),
+  username: z.string().email({ message: 'Invalid email address' }),
+  password: z
+    .string()
+    .min(6, { message: 'Password must be at least 6 characters' }),
 });
 type FormValues = z.infer<typeof schema>;
 
 interface LoginFormProps {
   dict: Translations;
-  lang: string;
+  lang: Locale;
   isMobile?: boolean;
 }
 
@@ -35,19 +43,56 @@ export default function LoginForm({
   lang,
   isMobile = false,
 }: LoginFormProps) {
+  const router = useRouter();
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormValues>({ resolver: zodResolver(schema) });
-  const [showPassword, setShowPassword] = useState(false);
+  } = useForm<FormValues>({
+    resolver: zodResolver(schema),
+  });
 
-  const onSubmit = (data: FormValues) => {
-    console.log('Login data:', data);
+  const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const onSubmit = async (data: FormValues) => {
+    setError(null);
+    setLoading(true);
+    try {
+      const payload: LoginPayload = {
+        username: data.username,
+        password: data.password,
+      };
+      const response = await login(payload);
+
+      // store tokens securely
+      localStorage.setItem('token', response.access);
+      localStorage.setItem('refreshToken', response.refresh);
+
+      // redirect to verify email page
+      router.push(`/${lang}/login/verify-email`);
+    } catch (err) {
+      if (err instanceof ApiError) {
+        setError(err.message);
+      } else {
+        setError('Unexpected error. Please try again.');
+      }
+      setLoading(false);
+    }
   };
 
   return (
-    <Container maxWidth='sm' sx={{ py: isMobile ? 0 : 4 }}>
+    <Container
+      maxWidth='sm'
+      disableGutters={isMobile}
+      sx={{ py: isMobile ? 0 : 4 }}>
+      {error && (
+        <Alert severity='error' sx={{ mb: 2 }}>
+          {error}
+        </Alert>
+      )}
+
       <Typography variant='h6' gutterBottom>
         {dict.login.formTitle}
       </Typography>
@@ -58,9 +103,9 @@ export default function LoginForm({
           placeholder={dict.login.emailPlaceholder}
           fullWidth
           margin='normal'
-          {...register('email')}
-          error={!!errors.email}
-          helperText={errors.email?.message}
+          {...register('username')}
+          error={!!errors.username}
+          helperText={errors.username?.message}
         />
 
         <TextField
@@ -84,40 +129,41 @@ export default function LoginForm({
           }}
         />
 
-        <Button type='submit' variant='contained' fullWidth sx={{ mt: 2 }}>
-          {dict.login.submit}
-        </Button>
-
-        <Box mt={2} textAlign='right'>
+        <Box mt={2} textAlign='left'>
           <Button size='small'>{dict.login.forgotPassword}</Button>
         </Box>
 
+        <Button
+          type='submit'
+          variant='contained'
+          fullWidth
+          disabled={loading}
+          sx={{ mt: 2 }}>
+          {loading ? <CircularProgress size={24} /> : dict.login.submit}
+        </Button>
+
         <Divider sx={{ my: 3 }} />
 
-        {/* Free profile + Register button */}
         <Box>
           <Typography
             gutterBottom
-            sx={{
-              textAlign: { xs: 'left', sm: 'center' },
-            }}>
+            sx={{ textAlign: { xs: 'left', sm: 'center' } }}>
             {dict.login.freeProfile}
           </Typography>
-          <Container
-            maxWidth='sm'
-            disableGutters={isMobile}
-            sx={{ py: isMobile ? 0 : 4, px: 0 }}>
-            {/* … */}
-            <Link href={`/${lang}/register/1`} passHref prefetch>
-              <Button
-                variant='outlined'
-                color='primary'
-                fullWidth
-                sx={{ mb: 2 }}>
-                {dict.login.register}
-              </Button>
-            </Link>
-          </Container>
+
+          <Box sx={{ textAlign: { xs: 'left', sm: 'center' } }}>
+            <MuiLink
+              component={Link}
+              href={`/${lang}/register/step1`}
+              underline='none'
+              sx={{
+                display: 'inline-block',
+                fontSize: '1rem',
+                fontWeight: 500,
+              }}>
+              {dict.login.register}
+            </MuiLink>
+          </Box>
         </Box>
       </Box>
     </Container>

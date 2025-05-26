@@ -1,3 +1,4 @@
+// src/app/[lang]/components/Header.tsx
 'use client';
 
 import React from 'react';
@@ -10,10 +11,17 @@ import type { Translations } from '../../../i18n/dictionaries';
 interface HeaderProps {
   dict: Translations;
   showBack?: boolean;
+  /** override the second line under the greeting */
+  subtitle?: string;
 }
 
-export default function Header({ dict, showBack = false }: HeaderProps) {
+export default function Header({
+  dict,
+  showBack = false,
+  subtitle,
+}: HeaderProps) {
   const router = useRouter();
+  const message = subtitle ?? dict.login.welcomeMessage;
 
   return (
     <Box
@@ -29,10 +37,9 @@ export default function Header({ dict, showBack = false }: HeaderProps) {
         </IconButton>
       )}
 
-      {/* logo stays centered */}
       <Box sx={{ textAlign: 'center' }}>
         <Image
-          src='/logo.svg'
+          src='/logo.png'
           width={120}
           height={40}
           alt='SkillNet'
@@ -40,7 +47,6 @@ export default function Header({ dict, showBack = false }: HeaderProps) {
         />
       </Box>
 
-      {/* greeting & welcome are now left‐aligned and pure black */}
       <Typography
         variant='h4'
         fontWeight='bold'
@@ -50,7 +56,7 @@ export default function Header({ dict, showBack = false }: HeaderProps) {
         {dict.login.greeting}
       </Typography>
       <Typography color='text.primary' textAlign='left' sx={{ mt: 1 }}>
-        {dict.login.welcomeMessage}
+        {message}
       </Typography>
     </Box>
   );

@@ -5,6 +5,7 @@ import type { Locale } from '../../i18n-config';
 export type { Locale };
 
 // We know each JSON import gives us an object (not just strings)
+// src/i18n/dictionaries.ts
 export type Translations = {
   login: {
     greeting: string;
@@ -16,12 +17,14 @@ export type Translations = {
     submit: string;
     forgotPassword: string;
     freeProfile: string;
+    freeProfileAlready: string;
     register: string;
     executors: string;
     companies: string;
     login: string;
   };
   register: {
+    headerTitle: string;
     step1Title: string;
     step1Heading: string;
     email: string;
@@ -31,11 +34,27 @@ export type Translations = {
     companyOptionLabel: string;
     companyOptionDescription: string;
     nextButton: string;
+    haveProfileAlready: string;
     step2Title: string;
     step2Heading: string;
+    firstName: string;
+    firstNamePlaceholder: string;
+    lastName: string;
+    lastNamePlaceholder: string;
+    company: string;
+    companyPlaceholder: string;
+    step3Title: string;
+    step3Heading: string;
     password: string;
     passwordPlaceholder: string;
-    haveProfileAlready;
+    emailInvalidText: string;
+    passwordInvalidText: string;
+    marketingOptOut: string;
+    dataConsent: string;
+    dataConsentLink: string;
+    termsText: string;
+    termsLinkText: string;
+    finishButton: string;
     // add additional steps as needed
   };
 };

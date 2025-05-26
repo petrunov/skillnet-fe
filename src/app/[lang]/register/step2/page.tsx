@@ -1,0 +1,19 @@
+import React from 'react';
+import type { Locale, Translations } from '../../../../i18n/dictionaries';
+import { getDictionary } from '../../../../i18n/dictionaries';
+import AppShell from '../../components/appShell';
+import Step2Client from './Step2Client';
+
+interface Props {
+  params: { lang: Locale };
+}
+
+export default async function Step2Page({ params }: Props) {
+  const dict: Translations = await getDictionary(params.lang);
+
+  return (
+    <AppShell dict={dict} showBack={true} subtitle={dict.register.headerTitle}>
+      <Step2Client dict={dict} lang={params.lang} />
+    </AppShell>
+  );
+}

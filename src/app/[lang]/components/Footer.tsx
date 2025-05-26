@@ -27,7 +27,12 @@ export default function Footer({ dict }: FooterProps) {
   return (
     <BottomNavigation
       showLabels
-      value={window.location.pathname.includes('/login') ? 2 : 0}
+      value={
+        window.location.pathname.includes('/login') ||
+        window.location.pathname.includes('/register')
+          ? 2
+          : 0
+      }
       sx={{
         position: 'fixed',
         bottom: 0,
