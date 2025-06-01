@@ -37,11 +37,11 @@ export default function Header({
         </IconButton>
       )}
 
-      <Box sx={{ textAlign: 'center' }}>
+      <Box sx={{ textAlign: 'center', mt: 2 }}>
         <Image
           src='/logo.png'
-          width={120}
-          height={40}
+          width={146}
+          height={31}
           alt='SkillNet'
           priority
         />
@@ -51,11 +51,12 @@ export default function Header({
         variant='h4'
         fontWeight='bold'
         color='text.primary'
-        mt={2}
-        textAlign='left'>
+        mt={3}
+        textAlign='left'
+        sx={{ fontSize: { xs: '1.5rem', md: '2rem' } }}>
         {dict.login.greeting}
       </Typography>
-      <Typography color='text.primary' textAlign='left' sx={{ mt: 1 }}>
+      <Typography color='text.primary' textAlign='left' sx={{ mt: 1, mb: 2 }}>
         {message}
       </Typography>
     </Box>

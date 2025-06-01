@@ -22,6 +22,9 @@ export type Translations = {
     executors: string;
     companies: string;
     login: string;
+    successTitle: string;
+    successMessage: string;
+    goToDashboard: string;
   };
   register: {
     headerTitle: string;

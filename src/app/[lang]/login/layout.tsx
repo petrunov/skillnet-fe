@@ -37,7 +37,6 @@ export default async function LoginLayout({ children, params }: Props) {
             pt: 4,
             px: 2,
             // allow inner scroll
-            height: 'calc(100vh -  (theme) => theme.spacing( (4+6)/8 ))',
             overflowY: 'auto',
           }}>
           {children}

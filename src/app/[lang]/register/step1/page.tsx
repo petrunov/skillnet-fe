@@ -12,7 +12,7 @@ export default async function Step1Page({ params }: Props) {
   const dict: Translations = await getDictionary(params.lang);
 
   return (
-    <AppShell dict={dict} showBack={false} subtitle={dict.register.headerTitle}>
+    <AppShell dict={dict} showBack={true} subtitle={dict.register.headerTitle}>
       <Step1Client dict={dict} lang={params.lang} />
     </AppShell>
   );

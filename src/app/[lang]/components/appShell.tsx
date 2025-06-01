@@ -3,7 +3,6 @@
 
 import React, { ReactNode } from 'react';
 import Header from './Header';
-import Footer from './Footer';
 import { Box, CssBaseline, Paper } from '@mui/material';
 import type { Translations } from '../../../i18n/dictionaries';
 
@@ -11,6 +10,7 @@ interface AppShellProps {
   dict: Translations;
   showBack?: boolean;
   children: ReactNode;
+  subtitle?: string;
 }
 
 export default function AppShell({
@@ -33,10 +33,10 @@ export default function AppShell({
               borderTopLeftRadius: 16,
               borderTopRightRadius: 16,
               pt: 4, // inner top padding
-              px: 2, // inner horizontal padding
-              pb: '56px', // leave space for footer
-              height: 'calc(100vh - 200px)', // adjust based on header/footer heights
+              px: 0, // inner horizontal padding
+              height: 'calc(100vh - 220px)', // adjust based on header/footer heights
               overflowY: 'auto',
+              boxShadow: 0,
             }}>
             {children}
           </Paper>
@@ -53,7 +53,7 @@ export default function AppShell({
         </Box>
       </Box>
 
-      <Footer dict={dict} />
+      {/* <Footer dict={dict} /> */}
     </>
   );
 }

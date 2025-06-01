@@ -25,7 +25,7 @@ import { Link as MuiLink } from '@mui/material';
 
 // reuse the same Zod schema for form validation
 const schema = z.object({
-  username: z.string().email({ message: 'Invalid email address' }),
+  email: z.string().email({ message: 'Invalid email address' }),
   password: z
     .string()
     .min(6, { message: 'Password must be at least 6 characters' }),
@@ -47,9 +47,10 @@ export default function LoginForm({
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm<FormValues>({
     resolver: zodResolver(schema),
+    mode: 'onChange',
   });
 
   const [showPassword, setShowPassword] = useState(false);
@@ -61,7 +62,7 @@ export default function LoginForm({
     setLoading(true);
     try {
       const payload: LoginPayload = {
-        username: data.username,
+        email: data.email,
         password: data.password,
       };
       const response = await login(payload);
@@ -70,8 +71,8 @@ export default function LoginForm({
       localStorage.setItem('token', response.access);
       localStorage.setItem('refreshToken', response.refresh);
 
-      // redirect to verify email page
-      router.push(`/${lang}/login/verify-email`);
+      // redirect to succcess page
+      router.push(`/${lang}/login/success`);
     } catch (err) {
       if (err instanceof ApiError) {
         setError(err.message);
@@ -83,17 +84,14 @@ export default function LoginForm({
   };
 
   return (
-    <Container
-      maxWidth='sm'
-      disableGutters={isMobile}
-      sx={{ py: isMobile ? 0 : 4 }}>
+    <Container maxWidth='sm' disableGutters={isMobile}>
       {error && (
         <Alert severity='error' sx={{ mb: 2 }}>
           {error}
         </Alert>
       )}
 
-      <Typography variant='h6' gutterBottom>
+      <Typography variant='h6' gutterBottom style={{ fontWeight: '600' }}>
         {dict.login.formTitle}
       </Typography>
 
@@ -103,9 +101,9 @@ export default function LoginForm({
           placeholder={dict.login.emailPlaceholder}
           fullWidth
           margin='normal'
-          {...register('username')}
-          error={!!errors.username}
-          helperText={errors.username?.message}
+          {...register('email')}
+          error={!!errors.email}
+          helperText={errors.email?.message}
         />
 
         <TextField
@@ -129,25 +127,27 @@ export default function LoginForm({
           }}
         />
 
-        <Box mt={2} textAlign='left'>
-          <Button size='small'>{dict.login.forgotPassword}</Button>
-        </Box>
-
         <Button
           type='submit'
           variant='contained'
           fullWidth
-          disabled={loading}
+          disabled={loading || !isValid}
           sx={{ mt: 2 }}>
           {loading ? <CircularProgress size={24} /> : dict.login.submit}
         </Button>
 
-        <Divider sx={{ my: 3 }} />
+        <Box mt={2} textAlign='left'>
+          <MuiLink component={Link} href={`/${lang}/register/step1`}>
+            {dict.login.forgotPassword}
+          </MuiLink>
+        </Box>
+
+        <Divider sx={{ mt: 3, mb: 6 }} />
 
         <Box>
           <Typography
             gutterBottom
-            sx={{ textAlign: { xs: 'left', sm: 'center' } }}>
+            sx={{ textAlign: { xs: 'left', sm: 'center', fontSize: 20 } }}>
             {dict.login.freeProfile}
           </Typography>
 
@@ -155,7 +155,6 @@ export default function LoginForm({
             <MuiLink
               component={Link}
               href={`/${lang}/register/step1`}
-              underline='none'
               sx={{
                 display: 'inline-block',
                 fontSize: '1rem',
