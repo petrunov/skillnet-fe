@@ -16,32 +16,58 @@
     "login": "Вход",
     "successTitle": "Успешно влизане",
     "successMessage": "Вече сте влезли в системата.",
-    "goToDashboard": "Към таблото"
+    "goToDashboard": "Към таблото",
+
+    "passwordResetRequestHeading": "Нулиране на парола",
+    "passwordResetRequestInfo": "Въведете вашия имейл и ще ви изпратим инструкции за нулиране на паролата.",
+    "passwordResetRequestEmail": "Е-мейл",
+    "passwordResetRequestEmailPlaceholder": "Въведете вашия имейл",
+    "passwordResetRequestButton": "Изпрати линк за нулиране",
+    "passwordResetRequestSuccessTitle": "Изпратен имейл",
+    "passwordResetRequestSuccessMessage": "Ако съществува профил с този имейл, скоро ще получите линк за нулиране на паролата.",
+
+    "passwordResetHeading": "Нулиране на парола",
+    "passwordResetButton": "Изпрати линк за нулиране",
+    "passwordResetSuccess": "Ако съществува профил с този имейл, скоро ще получите линк за нулиране на паролата.",
+
+    "passwordResetConfirmHeading": "Задайте нова парола",
+    "passwordResetConfirmButton": "Нулирай паролата",
+    "passwordResetConfirmSuccess": "Вашата парола беше успешно нулирана.",
+
+    "activationInvalidMessage": "Линкът за активиране е невалиден или е изтекъл. Моля, поискайте нов имейл за активиране.",
+    "activationSuccessTitle": "Акаунтът е активиран",
+    "activationSuccessMessage": "Вашият акаунт беше успешно активиран. Вече можете да влезете в системата.",
+    "accountActivated": "Вашият акаунт беше активиран.",
+    "registrationSuccessful": "Регистрацията е успешна."
   },
   "register": {
     "headerTitle": "Регистрация",
     "step1Title": "Създайте профил",
     "step1Heading": "Избери вид потребител",
     "email": "Е-мейл",
-    "emailPlaceholder": "вашият@е=мейл.com",
+    "emailPlaceholder": "вашият@е-мейл.com",
     "executorOptionLabel": "Изпълнител",
     "executorOptionDescription": "Аз съм изпълнител и търся поръчки",
     "companyOptionLabel": "Фирма",
     "companyOptionDescription": "Аз съм фирма и търся изпълнители",
     "nextButton": "Напред",
+    "haveProfileAlready": "Вече имате профил?",
+
     "step2Title": "Задайте парола",
     "step2Heading": "Въведи имена и фирма",
-    "password": "Парола",
-    "passwordPlaceholder": "••••••••",
-    "haveProfileAlready": "Вече имате профил?",
+
     "firstName": "Име",
     "firstNamePlaceholder": "Въведете вашето име",
     "lastName": "Фамилия",
     "lastNamePlaceholder": "Въведете вашата фамилия",
     "company": "Фирма",
     "companyPlaceholder": "Въведете името на фирмата",
+
     "step3Title": "Е-мейл и парола",
     "step3Heading": "Е-мейл и парола",
+
+    "password": "Парола",
+    "passwordPlaceholder": "••••••••",
     "emailInvalidText": "Моля въведете валиден имейл",
     "passwordInvalidText": "Минимум 8 символа",
     "marketingOptOut": "Не искам да получавам информация със съвети и възможности",
@@ -49,6 +75,29 @@
     "dataConsentLink": "личните ви данни",
     "termsText": "Приемам условията за ползване",
     "termsLinkText": "условията за ползване",
-    "finishButton": "Приключи"
+    "finishButton": "Приключи",
+    "verifyEmailHeading": "Успешна регистрация",
+    "verificationMailSent": "Ще получиш имейл за потвърждаване на регистрацията, с който да активираш и попълниш профила си. След това може на настроиш профила си.е регистрацията."
+  },
+  "errors": {
+    "invalidOrExpiredToken": "Токенът е невалиден или е изтекъл.",
+    "genericError": "Възникна грешка. Моля, опитайте отново по-късно."
+  },
+  "misc": {
+    "loading": "Loading...",
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "back": "Back",
+    "next": "Next",
+    "save": "Save",
+    "edit": "Edit",
+    "delete": "Delete",
+    "confirm": "Confirm",
+    "close": "Close",
+    "search": "Search",
+    "noResultsFound": "No results found.",
+    "yes": "Yes",
+    "no": "No",
+    "homepage": "Начална страница"
   }
 }

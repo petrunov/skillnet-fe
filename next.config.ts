@@ -1,15 +1,14 @@
-import type { NextConfig } from 'next';
-
-const nextConfig: NextConfig = {
+/** @type {import('next').NextConfig} */
+module.exports = {
+  env: {
+    BACKEND_URL: process.env.BACKEND_URL,
+  },
   async rewrites() {
     return [
       {
-        source: '/api/accounts/:path*', // client-side path
-        destination: 'http://localhost:8000/api/accounts/:path*/',
-        // → actual backend (no CORS needed, since the browser thinks it’s talking to your own domain)
+        source: '/api/accounts/:path*',
+        destination: `${process.env.BACKEND_URL}/api/accounts/:path*/`,
       },
     ];
   },
 };
-
-export default nextConfig;

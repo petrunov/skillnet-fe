@@ -16,7 +16,28 @@
     "login": "Login",
     "successTitle": "Successfully logged in",
     "successMessage": "You are now logged in.",
-    "goToDashboard": "Go to dashboard"
+    "goToDashboard": "Go to dashboard",
+
+    "passwordResetRequestHeading": "Reset your password",
+    "passwordResetRequestInfo": "Enter your email address and we'll send you reset instructions.",
+    "passwordResetRequestEmail": "Email",
+    "passwordResetRequestEmailPlaceholder": "Enter your email",
+    "passwordResetRequestButton": "Send reset link",
+    "passwordResetRequestSuccessTitle": "Email sent",
+    "passwordResetRequestSuccessMessage": "If an account with that email exists, you will receive a password reset link shortly.",
+
+    "passwordResetHeading": "Reset your password",
+    "passwordResetButton": "Send reset link",
+    "passwordResetSuccess": "If an account with that email exists, you will receive a password reset link shortly.",
+
+    "passwordResetConfirmHeading": "Set a new password",
+    "passwordResetConfirmButton": "Reset password",
+    "passwordResetConfirmSuccess": "Your password has been reset successfully.",
+    "activationInvalidMessage": "The activation link is invalid or has expired. Please request a new activation email.",
+    "activationSuccessTitle": "Account activated",
+    "activationSuccessMessage": "Your account has been activated successfully. You can now log in.",
+    "accountActivated": "Your account has been activated.",
+    "registrationSuccessful": "Registration successful."
   },
   "register": {
     "headerTitle": "Register",
@@ -29,19 +50,23 @@
     "companyOptionLabel": "Company",
     "companyOptionDescription": "I am a company looking for executors",
     "nextButton": "Next",
+    "haveProfileAlready": "Already have a profile?",
+
     "step2Title": "Set a password",
     "step2Heading": "Enter name and company",
-    "password": "Password",
-    "passwordPlaceholder": "••••••••",
-    "haveProfileAlready": "Already have a profile?",
+
     "firstName": "First name",
     "firstNamePlaceholder": "Enter your first name",
     "lastName": "Last name",
     "lastNamePlaceholder": "Enter your last name",
     "company": "Company",
     "companyPlaceholder": "Enter the company name",
+
     "step3Title": "Email and password",
     "step3Heading": "Email and password",
+
+    "password": "Password",
+    "passwordPlaceholder": "••••••••",
     "emailInvalidText": "Please enter a valid email",
     "passwordInvalidText": "Minimum 8 characters",
     "marketingOptOut": "I do not want to receive tips and opportunities",
@@ -49,6 +74,29 @@
     "dataConsentLink": "personal data",
     "termsText": "I accept the terms of use",
     "termsLinkText": "terms of use",
-    "finishButton": "Finish"
+    "finishButton": "Finish",
+    "verifyEmailHeading": "Verify your email",
+    "verificationMailSent": "A verification email has been sent to your email address. Please check your inbox and click the link to verify your account."
+  },
+  "errors": {
+    "invalidOrExpiredToken": "The token is invalid or has expired.",
+    "genericError": "Unexpected error occurred. Please try again later."
+  },
+  "misc": {
+    "loading": "Loading...",
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "back": "Back",
+    "next": "Next",
+    "save": "Save",
+    "edit": "Edit",
+    "delete": "Delete",
+    "confirm": "Confirm",
+    "close": "Close",
+    "search": "Search",
+    "noResultsFound": "No results found.",
+    "yes": "Yes",
+    "no": "No",
+    "homepage": "Homepage"
   }
 }

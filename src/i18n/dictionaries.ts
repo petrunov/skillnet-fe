@@ -1,5 +1,3 @@
-// src/i18n/dictionaries.ts
-import 'server-only';
 import type { Locale } from '../../i18n-config';
 
 export type { Locale };
@@ -25,6 +23,28 @@ export type Translations = {
     successTitle: string;
     successMessage: string;
     goToDashboard: string;
+
+    passwordResetRequestHeading: string;
+    passwordResetRequestInfo: string;
+    passwordResetRequestEmail: string;
+    passwordResetRequestEmailPlaceholder: string;
+    passwordResetRequestButton: string;
+    passwordResetRequestSuccessTitle: string;
+    passwordResetRequestSuccessMessage: string;
+
+    passwordResetHeading: string;
+    passwordResetButton: string;
+    passwordResetSuccess: string;
+
+    passwordResetConfirmHeading: string;
+    passwordResetConfirmButton: string;
+    passwordResetConfirmSuccess: string;
+
+    activationInvalidMessage: string;
+    activationSuccessTitle: string;
+    activationSuccessMessage: string;
+    accountActivated: string;
+    registrationSuccessful: string;
   };
   register: {
     headerTitle: string;
@@ -58,10 +78,30 @@ export type Translations = {
     termsText: string;
     termsLinkText: string;
     finishButton: string;
-    // add additional steps as needed
+    verifyEmailHeading: string;
+    verificationMailSent: string;
+  };
+  errors: {
+    invalidOrExpiredToken: string;
+    genericError: string;
+  };
+  misc: {
+    back: string;
+    continue: string;
+    loading: string;
+    notFound: string;
+    notFoundMessage: string;
+    serverError: string;
+    serverErrorMessage: string;
+    goBack: string;
+    goToHome: string;
+    goToDashboard: string;
+    goToLogin: string;
+    goToRegister: string;
+    goToProfile: string;
+    homepage: string;
   };
 };
-
 export const dictionaries: Record<Locale, () => Promise<Translations>> = {
   en: () => import('./locales/en/common.json').then((module) => module.default),
   bg: () => import('./locales/bg/common.json').then((module) => module.default),
