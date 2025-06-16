@@ -4,8 +4,8 @@ import type { ReactNode } from 'react';
 import type { Locale } from '../../../../i18n-config';
 import PublicLayoutClient from '../PublicLayoutClient';
 
-export async function generateStaticParams() {
-  return [{ lang: 'en' }, { lang: 'bg' }] as const;
+export function generateStaticParams(): { lang: Locale }[] {
+  return [{ lang: 'en' }, { lang: 'bg' }];
 }
 
 interface Props {

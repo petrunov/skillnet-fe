@@ -14,7 +14,10 @@ import type {
   Translations,
   Locale,
 } from '../../../../../../../i18n/dictionaries';
-import { activateAccount } from '../../../../../../../lib/accountService';
+import {
+  activateAccount,
+  ApiError,
+} from '../../../../../../../lib/accountService';
 
 interface Props {
   dict: Translations;
@@ -33,14 +36,30 @@ export default function ActivateAccountClient({
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
 
+  // pull errors map out so we can
+  // reference it and use it in the deps
+  const { errors: errorMap } = dict;
+
   useEffect(() => {
     activateAccount(uid, token)
       .then(() => setSuccess(true))
-      .catch((err) => {
-        setError(err.message);
+      .catch((err: unknown) => {
+        let message: string;
+        if (err instanceof ApiError) {
+          const code = err.message;
+          const key = Object.prototype.hasOwnProperty.call(errorMap, code)
+            ? (code as keyof typeof errorMap)
+            : 'genericError';
+          message = errorMap[key];
+        } else if (err instanceof Error) {
+          message = err.message;
+        } else {
+          message = errorMap.genericError;
+        }
+        setError(message);
       })
       .finally(() => setLoading(false));
-  }, [uid, token]);
+  }, [uid, token, errorMap]); // ← now includes errorMap, satisfying the linter
 
   if (loading) {
     return (
@@ -51,13 +70,10 @@ export default function ActivateAccountClient({
   }
 
   if (error) {
-    console.log('err', error);
-    console.log('err', dict.errors);
-    console.log('err', dict.errors[error]);
     return (
       <Container maxWidth='sm' sx={{ py: 4 }}>
         <Alert severity='error' sx={{ mb: 2 }}>
-          {dict.errors[error]}
+          {error}
         </Alert>
         <Box textAlign='center'>
           <Button
@@ -86,9 +102,11 @@ export default function ActivateAccountClient({
           component={NextLink}
           fullWidth
           href={`/${lang}/login`}>
-          {dict.login.formTitle}
+          {dict.login.login}
         </Button>
       </Container>
     );
   }
+
+  return null;
 }

@@ -1,9 +1,9 @@
+// src/i18n/dictionaries.ts
 import type { Locale } from '../../i18n-config';
 
 export type { Locale };
 
 // We know each JSON import gives us an object (not just strings)
-// src/i18n/dictionaries.ts
 export type Translations = {
   login: {
     greeting: string;
@@ -39,6 +39,8 @@ export type Translations = {
     passwordResetConfirmHeading: string;
     passwordResetConfirmButton: string;
     passwordResetConfirmSuccess: string;
+    passwordResetConfirmInvalidTitle: string;
+    passwordResetConfirmInvalidMessage: string;
 
     activationInvalidMessage: string;
     activationSuccessTitle: string;
@@ -80,31 +82,42 @@ export type Translations = {
     finishButton: string;
     verifyEmailHeading: string;
     verificationMailSent: string;
+    step1Subheading: string;
+    alreadyHaveAccount: string;
+    loginLink: string;
   };
   errors: {
     invalidOrExpiredToken: string;
     genericError: string;
   };
   misc: {
-    back: string;
-    continue: string;
     loading: string;
-    notFound: string;
-    notFoundMessage: string;
-    serverError: string;
-    serverErrorMessage: string;
-    goBack: string;
-    goToHome: string;
-    goToDashboard: string;
-    goToLogin: string;
-    goToRegister: string;
-    goToProfile: string;
+    submit: string;
+    cancel: string;
+    back: string;
+    next: string;
+    save: string;
+    edit: string;
+    delete: string;
+    confirm: string;
+    close: string;
+    search: string;
+    noResultsFound: string;
+    yes: string;
+    no: string;
     homepage: string;
   };
 };
+
 export const dictionaries: Record<Locale, () => Promise<Translations>> = {
-  en: () => import('./locales/en/common.json').then((module) => module.default),
-  bg: () => import('./locales/bg/common.json').then((module) => module.default),
+  en: () =>
+    import('./locales/en/common.json').then(
+      (module) => module.default as Translations
+    ),
+  bg: () =>
+    import('./locales/bg/common.json').then(
+      (module) => module.default as Translations
+    ),
 };
 
 export async function getDictionary(locale: Locale): Promise<Translations> {

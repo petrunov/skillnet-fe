@@ -4,10 +4,11 @@ import { getDictionary } from '../../../../../i18n/dictionaries';
 import SuccessClient from './SuccessClient';
 
 interface Props {
-  params: { lang: Locale };
+  params: Promise<{ lang: Locale }>;
 }
 
 export default async function SuccessPage({ params }: Props) {
-  const dict: Translations = await getDictionary(params.lang);
-  return <SuccessClient dict={dict} lang={params.lang} />;
+  const { lang } = await params;
+  const dict: Translations = await getDictionary(lang);
+  return <SuccessClient dict={dict} lang={lang} />;
 }

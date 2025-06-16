@@ -1,52 +1,44 @@
+// src/app/(public)/[lang]/register/activate/page.tsx
 import React from 'react';
 import { redirect } from 'next/navigation';
 import type { Translations, Locale } from '../../../../../i18n/dictionaries';
 import { getDictionary } from '../../../../../i18n/dictionaries';
-import { Container, Box, Typography, Button } from '@mui/material';
-import NextLink from 'next/link';
 import AppShell from '../../components/appShell';
+import { Container, Box, Typography } from '@mui/material';
 
 interface Props {
-  params: { lang: Locale };
-  searchParams: Record<string, string | string[] | undefined>;
+  params: Promise<{ lang: Locale }>;
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
 }
 
 export default async function ActivateRootPage({
   params,
   searchParams,
 }: Props) {
-  const { lang } = params;
+  const { lang } = await params;
+  const sp = await searchParams;
   const dict: Translations = await getDictionary(lang);
 
-  // If someone hits /activate without uid/token, redirect or show invalid
-  const screenUid = searchParams.uid;
-  const screenToken = searchParams.token;
-  if (!screenUid || !screenToken) {
+  // Handle both string and array cases
+  const uid = Array.isArray(sp.uid) ? sp.uid[0] : sp.uid;
+  const token = Array.isArray(sp.token) ? sp.token[0] : sp.token;
+
+  // If missing UID or token, show generic “invalid link” screen
+  if (!uid || !token) {
     return (
-      <AppShell
-        dict={dict}
-        showBack={true}
-        subtitle={dict.register.headerTitle}>
+      <AppShell dict={dict} showBack subtitle={dict.register.headerTitle}>
         <Container maxWidth='sm' sx={{ py: 4 }}>
           <Box textAlign='center'>
             <Typography variant='h6' gutterBottom>
-              {dict.login.login}
+              {dict.register.headerTitle}
             </Typography>
             <Typography>{dict.login.activationInvalidMessage}</Typography>
-            <Box mt={2}>
-              <Button
-                component={NextLink}
-                href={`/${lang}/login`}
-                variant='contained'>
-                {dict.login.formTitle}
-              </Button>
-            </Box>
           </Box>
         </Container>
       </AppShell>
     );
   }
 
-  // Otherwise redirect into the dynamic route
-  redirect(`/${lang}/register/activate/${screenUid}/${screenToken}`);
+  // Otherwise redirect to the dynamic activation route
+  redirect(`/${lang}/register/activate/${uid}/${token}`);
 }

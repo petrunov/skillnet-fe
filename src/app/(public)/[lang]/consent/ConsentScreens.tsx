@@ -5,7 +5,7 @@ import React from 'react';
 import { Container, Typography, Box, Button } from '@mui/material';
 import NextLink from 'next/link';
 import { useSearchParams } from 'next/navigation';
-import type { Translations, Locale } from '../../../../../i18n/dictionaries';
+import type { Translations, Locale } from '../../../../i18n/dictionaries';
 
 interface Props {
   dict: Translations;

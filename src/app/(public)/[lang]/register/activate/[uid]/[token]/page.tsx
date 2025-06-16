@@ -1,4 +1,4 @@
-// src/app/[lang]/register/activate/[uid]/[token]/page.tsx
+// src/app/(public)/[lang]/register/activate/[uid]/[token]/page.tsx
 import React from 'react';
 import type {
   Translations,
@@ -9,7 +9,7 @@ import ActivateAccountClient from './ActivateAccountClient';
 import AppShell from '../../../../components/appShell';
 
 interface Props {
-  params: { lang: Locale; uid: string; token: string };
+  params: Promise<{ lang: Locale; uid: string; token: string }>;
 }
 
 export default async function ActivateAccountPage({ params }: Props) {
@@ -17,7 +17,7 @@ export default async function ActivateAccountPage({ params }: Props) {
   const dict: Translations = await getDictionary(lang);
 
   return (
-    <AppShell dict={dict} showBack={true} subtitle={dict.register.headerTitle}>
+    <AppShell dict={dict} showBack subtitle={dict.register.headerTitle}>
       <ActivateAccountClient dict={dict} lang={lang} uid={uid} token={token} />
     </AppShell>
   );
