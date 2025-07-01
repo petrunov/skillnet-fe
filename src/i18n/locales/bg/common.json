@@ -18,23 +18,24 @@
     "successMessage": "Вече сте влезли в системата.",
     "goToDashboard": "Към таблото",
 
-    "passwordResetRequestHeading": "Нулиране на парола",
-    "passwordResetRequestInfo": "Въведете вашия имейл и ще ви изпратим инструкции за нулиране на паролата.",
+    "passwordResetRequestHeading": "Забравена парола",
+    "passwordResetRequestInfo": "Въведете вашия е-мейл и ще ви изпратим инструкции за нулиране на паролата.",
     "passwordResetRequestEmail": "Е-мейл",
-    "passwordResetRequestEmailPlaceholder": "Въведете вашия имейл",
+    "passwordResetRequestEmailPlaceholder": "Въведете вашия е-мейл",
     "passwordResetRequestButton": "Изпрати линк за нулиране",
-    "passwordResetRequestSuccessTitle": "Изпратен имейл",
-    "passwordResetRequestSuccessMessage": "Ако съществува профил с този имейл, скоро ще получите линк за нулиране на паролата.",
+    "passwordResetRequestSuccessTitle": "Изпратен е-мейл",
+    "passwordResetRequestSuccessMessage": "Ако съществува профил с този е-мейл, скоро ще получите линк за нулиране на паролата.",
 
-    "passwordResetHeading": "Нулиране на парола",
-    "passwordResetButton": "Изпрати линк за нулиране",
-    "passwordResetSuccess": "Ако съществува профил с този имейл, скоро ще получите линк за нулиране на паролата.",
+    "passwordResetHeading": "Забравена парола",
+    "passwordResetButton": "Изпрати",
+    "passwordResetSuccess": "Ако съществува профил с този е-мейл, скоро ще получите линк за смяна на паролата.",
+    "passwordResetDescription": "Попълни мейла, с който си се регистрирал и ще получиш линк за смяна на паролата.",
 
     "passwordResetConfirmHeading": "Задайте нова парола",
-    "passwordResetConfirmButton": "Нулирай паролата",
-    "passwordResetConfirmSuccess": "Вашата парола беше успешно нулирана.",
+    "passwordResetConfirmButton": "Изпрати",
+    "passwordResetConfirmSuccess": "Вашата парола беше успешно сменена.",
 
-    "activationInvalidMessage": "Линкът за активиране е невалиден или е изтекъл. Моля, поискайте нов имейл за активиране.",
+    "activationInvalidMessage": "Линкът за активиране е невалиден или е изтекъл. Моля, поискайте нов е-мейл за активиране.",
     "activationSuccessTitle": "Акаунтът е активиран",
     "activationSuccessMessage": "Вашият акаунт беше успешно активиран. Вече можете да влезете в системата.",
     "accountActivated": "Вашият акаунт беше активиран.",
@@ -68,7 +69,7 @@
 
     "password": "Парола",
     "passwordPlaceholder": "••••••••",
-    "emailInvalidText": "Моля въведете валиден имейл",
+    "emailInvalidText": "Моля въведете валиден е-мейл",
     "passwordInvalidText": "Минимум 8 символа",
     "marketingOptOut": "Не искам да получавам информация със съвети и възможности",
     "dataConsent": "Ние имаме нужда от Вашето съгласие, за да обработваме личните ви данни",
@@ -77,7 +78,7 @@
     "termsLinkText": "условията за ползване",
     "finishButton": "Приключи",
     "verifyEmailHeading": "Успешна регистрация",
-    "verificationMailSent": "Ще получиш имейл за потвърждаване на регистрацията, с който да активираш и попълниш профила си. След това може на настроиш профила си.е регистрацията."
+    "verificationMailSent": "Ще получиш е-мейл за потвърждаване на регистрацията, с който да активираш и попълниш профила си. След това може на настроиш профила си.е регистрацията."
   },
   "errors": {
     "invalidOrExpiredToken": "Токенът е невалиден или е изтекъл.",

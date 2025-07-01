@@ -79,6 +79,9 @@ export default function PasswordResetClient({ dict }: Props) {
         </Alert>
       )}
 
+      <Typography gutterBottom>
+        {dict.login.passwordResetDescription}
+      </Typography>
       <Box
         component='form'
         noValidate

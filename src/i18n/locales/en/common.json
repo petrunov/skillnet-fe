@@ -29,6 +29,7 @@
     "passwordResetHeading": "Reset your password",
     "passwordResetButton": "Send reset link",
     "passwordResetSuccess": "If an account with that email exists, you will receive a password reset link shortly.",
+    "passwordResetDescription": "Еnter the email you registered with and receive a link to change your password.",
 
     "passwordResetConfirmHeading": "Set a new password",
     "passwordResetConfirmButton": "Reset password",

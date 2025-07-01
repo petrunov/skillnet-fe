@@ -35,6 +35,7 @@ export type Translations = {
     passwordResetHeading: string;
     passwordResetButton: string;
     passwordResetSuccess: string;
+    passwordResetDescription: string;
 
     passwordResetConfirmHeading: string;
     passwordResetConfirmButton: string;
