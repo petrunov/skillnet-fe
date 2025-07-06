@@ -10,6 +10,7 @@ interface AppShellProps {
   dict: Translations;
   showBack?: boolean;
   children: ReactNode;
+  title?: string;
   subtitle?: string;
 }
 
@@ -17,11 +18,18 @@ export default function AppShell({
   dict,
   showBack = false,
   children,
+  title,
+  subtitle,
 }: AppShellProps) {
   return (
     <>
       <CssBaseline />
-      <Header dict={dict} showBack={showBack} />
+      <Header
+        dict={dict}
+        title={title}
+        subtitle={subtitle}
+        showBack={showBack}
+      />
 
       <Box component='main'>
         {/* Mobile: overlapping rounded‐corner card */}
@@ -33,7 +41,7 @@ export default function AppShell({
               borderTopLeftRadius: 16,
               borderTopRightRadius: 16,
               pt: 4, // inner top padding
-              px: 0, // inner horizontal padding
+              px: 2, // inner horizontal padding
               height: 'calc(100vh - 220px)', // adjust based on header/footer heights
               overflowY: 'auto',
               boxShadow: 0,

@@ -51,6 +51,7 @@ export type Translations = {
   };
   register: {
     headerTitle: string;
+    headerSubtitle: string;
     step1Title: string;
     step1Heading: string;
     email: string;

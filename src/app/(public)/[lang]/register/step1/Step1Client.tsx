@@ -12,6 +12,8 @@ import {
 import { useRouter } from 'next/navigation';
 import { PersonRegular, BuildingRegular } from '@fluentui/react-icons';
 import type { Translations, Locale } from '../../../../../i18n/dictionaries';
+import Link from 'next/link';
+import MuiLink from '@mui/material/Link';
 
 interface Props {
   dict: Translations;
@@ -25,18 +27,16 @@ export default function Step1Client({ dict, lang }: Props) {
   const cardBaseStyles = {
     display: 'flex',
     alignItems: 'center',
-    borderRadius: 2,
-    boxShadow: 1,
+    borderRadius: 4,
+    boxShadow: '0.1px 3px 5px 0.1px #ccc',
     cursor: 'pointer',
-    borderWidth: 2,
+    borderWidth: 1,
     transition: 'border-color 0.2s, box-shadow 0.2s',
-    '&:hover': {
-      boxShadow: 3,
-    },
+    marginBottom: 1,
   };
 
   const iconStyles = {
-    fontSize: 32,
+    fontSize: 66,
     color: 'primary.main',
     mr: 2,
   };
@@ -44,10 +44,10 @@ export default function Step1Client({ dict, lang }: Props) {
   return (
     <Box>
       {/* Step Heading */}
-      <Typography variant='h6' gutterBottom>
+      <Typography variant='h6' sx={{ mb: 3 }}>
         {dict.register.step1Heading}
       </Typography>
-      <Typography variant='body2' color='text.secondary' gutterBottom>
+      <Typography variant='body2' color='text.secondary'>
         {dict.register.step1Subheading}
       </Typography>
 
@@ -58,17 +58,16 @@ export default function Step1Client({ dict, lang }: Props) {
           onClick={() => setSelected('executor')}
           sx={{
             ...cardBaseStyles,
-            borderColor: selected === 'executor' ? 'primary.main' : 'divider',
+            // borderColor: selected === 'executor' ? 'primary.main' : 'divider',
+            backgroundColor: selected === 'executor' ? '#D6E8FC' : 'white',
           }}>
-          <CardContent sx={{ display: 'flex', alignItems: 'center', p: 2 }}>
+          <CardContent sx={{ display: 'flex', alignItems: 'center', p: 3 }}>
             <PersonRegular style={iconStyles} />
-            <Box>
-              <Typography variant='subtitle1'>
+            <Box sx={{ py: 1, px: 2 }}>
+              <Typography variant='subtitle1' sx={{ fontWeight: 'bold' }}>
                 {dict.register.executorOptionLabel}
               </Typography>
-              <Typography variant='body2' color='text.secondary'>
-                {dict.register.executorOptionDescription}
-              </Typography>
+              <Typography>{dict.register.executorOptionDescription}</Typography>
             </Box>
           </CardContent>
         </Card>
@@ -78,17 +77,16 @@ export default function Step1Client({ dict, lang }: Props) {
           onClick={() => setSelected('company')}
           sx={{
             ...cardBaseStyles,
-            borderColor: selected === 'company' ? 'primary.main' : 'divider',
+            // borderColor: selected === 'company' ? 'primary.main' : 'divider',
+            backgroundColor: selected === 'company' ? '#D6E8FC' : 'white',
           }}>
-          <CardContent sx={{ display: 'flex', alignItems: 'center', p: 2 }}>
+          <CardContent sx={{ display: 'flex', alignItems: 'center', p: 3 }}>
             <BuildingRegular style={iconStyles} />
-            <Box>
-              <Typography variant='subtitle1'>
+            <Box sx={{ py: 1, px: 2 }}>
+              <Typography variant='subtitle1' sx={{ fontWeight: 'bold' }}>
                 {dict.register.companyOptionLabel}
               </Typography>
-              <Typography variant='body2' color='text.secondary'>
-                {dict.register.companyOptionDescription}
-              </Typography>
+              <Typography>{dict.register.companyOptionDescription}</Typography>
             </Box>
           </CardContent>
         </Card>
@@ -110,16 +108,19 @@ export default function Step1Client({ dict, lang }: Props) {
       <Divider sx={{ my: 3 }} />
 
       {/* Footer Link */}
-      <Box textAlign='center'>
-        <Typography variant='body2' color='text.secondary'>
-          {dict.register.alreadyHaveAccount}
-        </Typography>
-        <Button
-          variant='text'
-          onClick={() => router.push(`/${lang}/login`)}
-          sx={{ mt: 1, textTransform: 'none' }}>
-          {dict.register.loginLink}
-        </Button>
+      <Box textAlign='left'>
+        <Typography>{dict.register.haveProfileAlready}</Typography>
+        <MuiLink
+          component={Link}
+          href={`/${lang}/login`}
+          sx={{
+            display: 'inline-block',
+            fontSize: '1rem',
+            fontWeight: 500,
+            mt: 4,
+          }}>
+          {dict.login.login}
+        </MuiLink>
       </Box>
     </Box>
   );

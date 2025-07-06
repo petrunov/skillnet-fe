@@ -43,6 +43,7 @@
   },
   "register": {
     "headerTitle": "Регистрация",
+    "headerSubtitle": "Стъпка 1 от 3",
     "step1Title": "Създайте профил",
     "step1Heading": "Избери вид потребител",
     "email": "Е-мейл",
@@ -52,7 +53,7 @@
     "companyOptionLabel": "Фирма",
     "companyOptionDescription": "Аз съм фирма и търся изпълнители",
     "nextButton": "Напред",
-    "haveProfileAlready": "Вече имате профил?",
+    "haveProfileAlready": "Имаш вече потребител в SkillNet?",
 
     "step2Title": "Задайте парола",
     "step2Heading": "Въведи имена и фирма",

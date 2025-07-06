@@ -11,6 +11,7 @@ import type { Translations } from '../../../../i18n/dictionaries';
 interface HeaderProps {
   dict: Translations;
   showBack?: boolean;
+  title?: string;
   /** override the second line under the greeting */
   subtitle?: string;
 }
@@ -18,10 +19,12 @@ interface HeaderProps {
 export default function Header({
   dict,
   showBack = false,
+  title,
   subtitle,
 }: HeaderProps) {
   const router = useRouter();
-  const message = subtitle ?? dict.login.welcomeMessage;
+  const bigTitle = title ?? dict.login.greeting;
+  const smallTitle = subtitle ?? dict.login.welcomeMessage;
 
   return (
     <Box
@@ -60,10 +63,10 @@ export default function Header({
         mt={3}
         textAlign='left'
         sx={{ fontSize: { xs: '1.5rem', md: '2rem' } }}>
-        {dict.login.greeting}
+        {bigTitle}
       </Typography>
       <Typography color='text.primary' textAlign='left' sx={{ mt: 1, mb: 2 }}>
-        {message}
+        {smallTitle}
       </Typography>
     </Box>
   );
