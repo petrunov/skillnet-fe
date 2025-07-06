@@ -42,7 +42,9 @@
   },
   "register": {
     "headerTitle": "Register",
-    "headerSubtitle": "Step 1 of 3",
+    "headerSubtitleStep1": "Step 1 of 3",
+    "headerSubtitleStep2": "Step 2 of 3",
+    "headerSubtitleStep3": "Step 3 of 3",
     "step1Title": "Create a profile",
     "step1Heading": "Choose account type",
     "email": "Email",

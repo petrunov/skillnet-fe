@@ -14,7 +14,11 @@ export default async function Step3Page({ params }: Props) {
   const dict: Translations = await getDictionary(lang);
 
   return (
-    <AppShell dict={dict} showBack={true}>
+    <AppShell
+      dict={dict}
+      showBack={true}
+      title={dict.register.headerTitle}
+      subtitle={dict.register.headerSubtitleStep3}>
       <Container maxWidth='sm'>
         <Suspense
           fallback={

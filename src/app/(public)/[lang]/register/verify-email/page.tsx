@@ -32,7 +32,7 @@ export default function VerifyEmailPage({ params }: Props) {
   }
 
   return (
-    <AppShell dict={dict} showBack>
+    <AppShell dict={dict} showBack title={dict.register.headerTitle}>
       <Box sx={{ mt: 4, px: 2 }}>
         <Box
           sx={{

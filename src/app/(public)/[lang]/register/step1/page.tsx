@@ -21,7 +21,7 @@ export default async function Step1Page({ params }: Props) {
       dict={dict}
       showBack={true}
       title={dict.register.headerTitle}
-      subtitle={dict.register.headerSubtitle}>
+      subtitle={dict.register.headerSubtitleStep1}>
       <Container maxWidth='sm'>
         <Suspense
           fallback={

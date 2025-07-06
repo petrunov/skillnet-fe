@@ -42,7 +42,7 @@ export default async function ConsentPage({ params, searchParams }: Props) {
     screen === 'termsOfUse' ? TermsOfUseScreen : PersonalDataScreen;
 
   return (
-    <AppShell dict={dict} showBack>
+    <AppShell dict={dict} showBack title={dict.register.headerTitle}>
       <Container maxWidth='sm'>
         <ScreenComponent dict={dict} lang={lang} />
       </Container>
