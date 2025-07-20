@@ -6,8 +6,9 @@ module.exports = {
   async rewrites() {
     return [
       {
-        source: '/api/accounts/:path*',
-        destination: `${process.env.BACKEND_URL}/api/accounts/:path*/`,
+        // match /api/accounts/anything **except** login or logout**
+        source: '/api/accounts/:path((?!login|logout).* )',
+        destination: `${process.env.BACKEND_URL}/api/accounts/:path*`,
       },
     ];
   },

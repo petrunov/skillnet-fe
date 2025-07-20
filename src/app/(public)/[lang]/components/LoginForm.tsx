@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState } from 'react';
-import { useRouter } from 'next/navigation';
 import {
   Box,
   Button,
@@ -17,12 +16,11 @@ import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import type { Translations, Locale } from '../../../../i18n/dictionaries';
-import { login, ApiError, LoginPayload } from '../../../../lib/accountService';
+import { login, ApiError } from '../../../../lib/accountService';
 import { z } from 'zod';
 import Link from 'next/link';
 import { Link as MuiLink } from '@mui/material';
 
-// The Zod schema stayed exactly the same:
 const schema = z.object({
   email: z.string().email({ message: 'Invalid email address' }),
   password: z
@@ -37,7 +35,6 @@ interface LoginFormProps {
 }
 
 export default function LoginForm({ dict, lang }: LoginFormProps) {
-  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -54,20 +51,14 @@ export default function LoginForm({ dict, lang }: LoginFormProps) {
   const onSubmit = async (data: FormValues) => {
     setError(null);
     setLoading(true);
+
     try {
-      const payload: LoginPayload = {
-        email: data.email,
-        password: data.password,
-      };
-      const response = await login(payload);
+      // call your proxy login — it sets the HTTP-only cookie
+      await login({ email: data.email, password: data.password });
 
-      // store tokens securely
-      localStorage.setItem('token', response.access);
-      localStorage.setItem('refreshToken', response.refresh);
-
-      // redirect to succcess page
-      router.push(`/${lang}/login/success`);
-    } catch (err) {
+      // full-page redirect so the cookie is sent on the next request
+      window.location.href = `/${lang}/dashboard`;
+    } catch (err: unknown) {
       if (err instanceof ApiError) {
         setError(err.message);
       } else {
@@ -85,7 +76,7 @@ export default function LoginForm({ dict, lang }: LoginFormProps) {
         </Alert>
       )}
 
-      <Typography variant='h6' gutterBottom style={{ fontWeight: '600' }}>
+      <Typography variant='h6' gutterBottom fontWeight={600}>
         {dict.login.formTitle}
       </Typography>
 
