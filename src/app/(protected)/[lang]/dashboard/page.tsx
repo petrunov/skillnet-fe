@@ -5,10 +5,19 @@ import React from 'react';
 import { Box, Button, Typography, Container, Stack } from '@mui/material';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
+import { logout } from '../../../../lib/accountService';
 
 export default function DashboardPage() {
   const BACKGROUND_IMAGE = '/dashboard-bg.jpg'; // put your image in public/
   const LOGO = '/logo.png'; // put your logo in public/
+
+  const router = useRouter();
+
+  const handleLogout = async () => {
+    await logout();
+    router.push('/bg/login'); // or `/en/login` based on lang
+  };
 
   return (
     <Box>
@@ -76,6 +85,35 @@ export default function DashboardPage() {
           </Typography>
 
           <Box sx={{ textAlign: { xs: 'center', md: 'left' } }}>
+            <Button
+              variant='contained'
+              size='large'
+              onClick={handleLogout}
+              sx={{
+                backgroundColor: '#39FF99',
+                color: '#002A4E',
+                textTransform: 'none',
+                fontWeight: 600,
+                fontSize: '1rem',
+                px: 4,
+                py: 1.5,
+                '&:hover': {
+                  backgroundColor: '#2FEF8A',
+                },
+              }}>
+              <Box
+                component='span'
+                sx={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  mr: 1,
+                }}></Box>
+              Изход
+            </Button>
+
+            <br />
+            <br />
+
             <Button
               variant='contained'
               size='large'

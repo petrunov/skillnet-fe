@@ -32,8 +32,13 @@ export function middleware(req: NextRequest) {
   // 3. Define which paths under /[lang]/* are public:
   const publicPrefixes = [
     `/${lang}/login`,
-    `/${lang}/register/step1`,
     `/${lang}/login/success`,
+    `/${lang}/login/password-reset`,
+    `/${lang}/register/step1`,
+    `/${lang}/register/step2`,
+    `/${lang}/register/step3`,
+    `/${lang}/register/activate`,
+    `/${lang}/register/verify-email`,
   ];
   const isPublic = publicPrefixes.some((p) => pathname.startsWith(p));
 

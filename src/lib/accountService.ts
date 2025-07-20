@@ -119,7 +119,7 @@ export type PasswordResetConfirmRequest = z.infer<
  */
 export async function login(payload: LoginPayload): Promise<void> {
   const parsed = LoginPayloadSchema.parse(payload);
-  const res = await fetch(`${process.env.BACKEND_URL}/api/accounts/login`, {
+  const res = await fetch(`${BASE_PATH}/login/`, {
     method: 'POST',
     credentials: 'include',
     headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
@@ -131,8 +131,6 @@ export async function login(payload: LoginPayload): Promise<void> {
   if (ct.includes('application/json')) {
     data = await res.json().catch(() => null);
   }
-
-  console.log(res);
 
   if (!res.ok) {
     let message = res.statusText;

@@ -28,7 +28,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "src/app/api/accounts/login/route.sx"
+    "src/app/api/accounts/login/route.ts"
   ],
   "exclude": ["node_modules"]
 }
