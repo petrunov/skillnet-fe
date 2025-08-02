@@ -8,7 +8,7 @@ export function generateStaticParams(): { lang: Locale }[] {
 
 interface Props {
   children: ReactNode;
-  params: { lang: Locale };
+  params: Promise<{ lang: Locale }>;
 }
 
 export default function ProtectedLangLayout({ children }: Props) {
