@@ -20,6 +20,7 @@ import { login, ApiError } from '../../../../lib/accountService';
 import { z } from 'zod';
 import Link from 'next/link';
 import { Link as MuiLink } from '@mui/material';
+import GoogleLoginButton from './GoogleLoginButton';
 
 const schema = z.object({
   email: z.string().email({ message: 'Invalid email address' }),
@@ -32,9 +33,10 @@ type FormValues = z.infer<typeof schema>;
 interface LoginFormProps {
   dict: Translations;
   lang: Locale;
+  showGoogleLogin?: boolean;
 }
 
-export default function LoginForm({ dict, lang }: LoginFormProps) {
+export default function LoginForm({ dict, lang, showGoogleLogin = false }: LoginFormProps) {
   const {
     register,
     handleSubmit,
@@ -126,6 +128,20 @@ export default function LoginForm({ dict, lang }: LoginFormProps) {
             {dict.login.forgotPassword}
           </MuiLink>
         </Box>
+
+        {showGoogleLogin && (
+          <>
+            <Box mt={2}>
+              <Divider>
+                <Typography variant='caption' color='text.secondary'>
+                  OR
+                </Typography>
+              </Divider>
+            </Box>
+
+            <GoogleLoginButton lang={lang} />
+          </>
+        )}
 
         <Divider sx={{ mt: 3, mb: 6 }} />
 
