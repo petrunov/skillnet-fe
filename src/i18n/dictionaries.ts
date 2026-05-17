@@ -111,16 +111,26 @@ export type Translations = {
     no: string;
     homepage: string;
   };
+  HomePage: {
+    title: string;
+    authentication: string;
+    login: string;
+    register: string;
+    passwordReset: string;
+    account: string;
+    consent: string;
+    verifyEmail: string;
+  };
 };
 
 export const dictionaries: Record<Locale, () => Promise<Translations>> = {
   en: () =>
     import('./locales/en/common.json').then(
-      (module) => module.default as Translations
+      (module) => module.default as Translations,
     ),
   bg: () =>
     import('./locales/bg/common.json').then(
-      (module) => module.default as Translations
+      (module) => module.default as Translations,
     ),
 };
 

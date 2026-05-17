@@ -12,7 +12,8 @@ interface LoginPageClientProps {
 
 export default function LoginPageClient({ dict, lang }: LoginPageClientProps) {
   const [showGoogleLogin, setShowGoogleLogin] = useState(false);
-  const clientId = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID || 'dummy-client-id';
+  const clientId =
+    process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID || 'dummy-client-id';
 
   // Only determine showGoogleLogin on client after hydration
   useEffect(() => {

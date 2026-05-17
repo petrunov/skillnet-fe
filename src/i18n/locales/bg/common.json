@@ -88,20 +88,30 @@
     "genericError": "Възникна грешка. Моля, опитайте отново по-късно."
   },
   "misc": {
-    "loading": "Loading...",
-    "submit": "Submit",
-    "cancel": "Cancel",
-    "back": "Back",
-    "next": "Next",
-    "save": "Save",
-    "edit": "Edit",
-    "delete": "Delete",
-    "confirm": "Confirm",
-    "close": "Close",
-    "search": "Search",
-    "noResultsFound": "No results found.",
-    "yes": "Yes",
-    "no": "No",
-    "homepage": "Начална страница"
+    "loading": "Зареждане...",
+    "submit": "Изпрати",
+    "cancel": "Отказ",
+    "back": "Назад",
+    "next": "Напред",
+    "save": "Запази",
+    "edit": "Редактирай",
+    "delete": "Изтрий",
+    "confirm": "Потвърди",
+    "close": "Затвори",
+    "search": "Търси",
+    "noResultsFound": "Няма намерени резултати",
+    "yes": "Да",
+    "no": "Не",
+    "homepage": "Начало"
+  },
+  "HomePage": {
+    "title": "Добре дошли в SkillNet",
+    "authentication": "Автентикация",
+    "login": "Вход",
+    "register": "Регистрация",
+    "passwordReset": "Нова парола",
+    "account": "Акаунт",
+    "consent": "Съгласие",
+    "verifyEmail": "Потвърждение на имейл"
   }
 }

@@ -10,6 +10,11 @@ export function middleware(req: NextRequest) {
   const segments = pathname.split('/');
   const lang = segments[1]; // will be "en" or "bg"
 
+  // 2. Redirect root path to /en
+  if (pathname === '/') {
+    return NextResponse.redirect(new URL('/en', req.url));
+  }
+
   // Only run on /en/* and /bg/*
   if (lang !== 'en' && lang !== 'bg') {
     return;
@@ -31,6 +36,7 @@ export function middleware(req: NextRequest) {
 
   // 3. Define which paths under /[lang]/* are public:
   const publicPrefixes = [
+    `/${lang}`,
     `/${lang}/login`,
     `/${lang}/login/success`,
     `/${lang}/login/password-reset`,
@@ -40,7 +46,12 @@ export function middleware(req: NextRequest) {
     `/${lang}/register/activate`,
     `/${lang}/register/verify-email`,
   ];
-  const isPublic = publicPrefixes.some((p) => pathname.startsWith(p));
+  let isPublic = publicPrefixes.some((p) => pathname.startsWith(p));
+
+  // Special case: /[lang]/dashboard is NOT public, it's protected
+  if (pathname.startsWith(`/${lang}/dashboard`)) {
+    isPublic = false;
+  }
 
   // 4a. Unauthenticated + NOT public → send to /[lang]/login
   if (!token && !isPublic) {
@@ -56,5 +67,5 @@ export function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/:lang(en|bg)/:path*'],
+  matcher: ['/', '/:lang(en|bg)/:path*'],
 };

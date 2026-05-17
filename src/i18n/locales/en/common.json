@@ -98,9 +98,19 @@
     "confirm": "Confirm",
     "close": "Close",
     "search": "Search",
-    "noResultsFound": "No results found.",
+    "noResultsFound": "No results found",
     "yes": "Yes",
     "no": "No",
     "homepage": "Homepage"
+  },
+  "HomePage": {
+    "title": "Welcome to SkillNet",
+    "authentication": "Authentication",
+    "login": "Login",
+    "register": "Register",
+    "passwordReset": "Password Reset",
+    "account": "Account",
+    "consent": "Consent",
+    "verifyEmail": "Verify Email"
   }
 }
